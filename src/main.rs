@@ -1,9 +1,9 @@
 use std::io;
 
-fn sum_of_matching_digits(v: Vec<u32>, offset: usize) -> u32 {
+fn sum_of_matching_offset_digits(v: &Vec<u32>, offset_function: fn(&Vec<u32>) -> usize) -> u32 {
     let mut sum = 0;
     let mut i = 0;
-    let mut j = offset + i;
+    let mut j = offset_function(v) + i;
     while i < v.len() {
         if v[i] == v[j] {
             sum += v[i];
@@ -17,16 +17,30 @@ fn sum_of_matching_digits(v: Vec<u32>, offset: usize) -> u32 {
     sum
 }
 
-fn parse_input(input: String) -> Vec<u32> {
+fn parse_string_of_digits(input: String) -> Vec<u32> {
     input.chars().filter_map(|c| c.to_digit(10)).collect()
 }
 
-fn main() {
+fn just_one<A>(_: &Vec<A>) -> usize {
+    1
+}
+
+fn length_over_two<A>(vector: &Vec<A>) -> usize {
+    vector.len() / 2
+}
+
+fn read_one_line() -> String {
     let mut input = String::new();
     io::stdin().read_line(&mut input)
         .expect("Failed to read line");
-    let digits = parse_input(input);
-    let offset = digits.len() / 2;
-    let sum = sum_of_matching_digits(digits, offset);
+    input
+}
+
+fn inverse_captcha() {
+    let sum = sum_of_matching_offset_digits(&parse_string_of_digits(read_one_line()), length_over_two);
     println!("Sum: {}", sum);
+}
+
+fn main() {
+    inverse_captcha();
 }
