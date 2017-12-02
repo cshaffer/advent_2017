@@ -1,11 +1,17 @@
 use std::io;
 
-fn sum_of_matching_digits(v: Vec<u32>) -> u32 {
+fn sum_of_matching_digits(v: Vec<u32>, offset: usize) -> u32 {
     let mut sum = 0;
-    for i in 0..v.len() {
-        if (i == v.len() - 1 && v[i] == v[0]) ||
-           (i < v.len() - 1 && v[i] == v[i + 1]) {
+    let mut i = 0;
+    let mut j = offset + i;
+    while i < v.len() {
+        if v[i] == v[j] {
             sum += v[i];
+        }
+        i += 1;
+        j += 1;
+        if j == v.len() {
+            j = 0;
         }
     }
     sum
@@ -20,6 +26,7 @@ fn main() {
     io::stdin().read_line(&mut input)
         .expect("Failed to read line");
     let digits = parse_input(input);
-    let sum = sum_of_matching_digits(digits);
+    let offset = digits.len() / 2;
+    let sum = sum_of_matching_digits(digits, offset);
     println!("Sum: {}", sum);
 }
