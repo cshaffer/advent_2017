@@ -9,7 +9,7 @@ fn inverse_captcha_main() {
 
 fn checksum_main() {
     let numbers = io::read_int_arrays_from_file("input/2_puzzle.txt".to_string());
-    let sum = checksum::checksum(numbers, checksum::extreme_values, checksum::difference);
+    let sum = checksum::checksum(numbers, checksum::divisible_values, checksum::quotient);
     println!("Sum: {}", sum);
 }
 
