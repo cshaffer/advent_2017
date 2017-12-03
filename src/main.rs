@@ -8,11 +8,11 @@ fn inverse_captcha_main() {
 }
 
 fn checksum_main() {
-    let numbers = io::read_int_arrays_from_file("input/2.txt".to_string());
-    let sum = checksum::checksum(numbers);
+    let numbers = io::read_int_arrays_from_file("input/2_puzzle.txt".to_string());
+    let sum = checksum::checksum(numbers, checksum::extreme_values, checksum::difference);
     println!("Sum: {}", sum);
 }
 
 fn main() {
-    inverse_captcha_main();
+    checksum_main();
 }
