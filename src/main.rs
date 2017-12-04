@@ -1,6 +1,7 @@
 mod checksum;
 mod io;
 mod inverse_captcha;
+mod spiral_memory;
 
 fn inverse_captcha_main() {
     let sum = inverse_captcha::inverse_captcha(io::read_one_line());
@@ -13,6 +14,11 @@ fn checksum_main() {
     println!("Sum: {}", sum);
 }
 
+fn spiral_memory_main(input: u32) {
+    let distance = spiral_memory::manhattan_distance(input);
+    println!("Distance: {}", distance);
+}
+
 fn main() {
-    checksum_main();
+    spiral_memory_main(368078);
 }
