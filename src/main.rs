@@ -15,8 +15,8 @@ fn checksum_main() {
 }
 
 fn spiral_memory_main(input: u32) {
-    let distance = spiral_memory::manhattan_distance(input);
-    println!("Distance: {}", distance);
+    let value = spiral_memory::spiral_sum(input);
+    println!("Value: {}", value);
 }
 
 fn main() {
