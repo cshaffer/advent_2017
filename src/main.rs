@@ -1,6 +1,7 @@
 mod checksum;
 mod io;
 mod inverse_captcha;
+mod passphrase;
 mod spiral_memory;
 
 fn inverse_captcha_main() {
@@ -19,6 +20,12 @@ fn spiral_memory_main(input: u32) {
     println!("Value: {}", value);
 }
 
+fn passphrase_main() {
+    let passphrases = io::read_string_arrays_from_file("input/4_puzzle.txt".to_string());
+    let count = passphrase::valid_count(passphrases);
+    println!("Valid count: {}", count);
+}
+
 fn main() {
-    spiral_memory_main(368078);
+    passphrase_main();
 }
