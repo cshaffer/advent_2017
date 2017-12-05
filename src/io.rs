@@ -26,3 +26,12 @@ pub fn read_string_arrays_from_file(path: String) -> Vec<Vec<String>> {
         .expect("something went wrong reading the file");
     contents.lines().map(|line| line.split_whitespace().map(|w| String::from(w)).collect()).collect()
 }
+
+pub fn read_int_lines_from_file(path: String) -> Vec<i32> {
+    let mut f = File::open(path).expect("file not found");
+
+    let mut contents = String::new();
+    f.read_to_string(&mut contents)
+        .expect("something went wrong reading the file");
+    contents.lines().map(|line| i32::from_str_radix(line, 10).unwrap()).collect()
+}

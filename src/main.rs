@@ -1,6 +1,7 @@
 mod checksum;
 mod io;
 mod inverse_captcha;
+mod jump;
 mod passphrase;
 mod spiral_memory;
 
@@ -26,6 +27,11 @@ fn passphrase_main() {
     println!("Valid count: {}", count);
 }
 
+fn jump_main() {
+    let instructions = io::read_int_lines_from_file("input/5_puzzle.txt".to_string());
+    jump::jump(instructions);
+}
+
 fn main() {
-    passphrase_main();
+    jump_main();
 }
