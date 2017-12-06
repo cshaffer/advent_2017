@@ -1,15 +1,15 @@
-use std::collections::HashSet;
+use std::collections::HashMap;
 
 pub fn realloc(memory: Vec<u32>) -> u32 {
     let mut memory = memory.clone();
-    let mut steps = 0;
-    let mut seen_states = HashSet::new();
+    let mut current_step:u32 = 0;
+    let mut seen_states = HashMap::new();
 
     loop {
-        if seen_states.contains(&memory) {
+        if seen_states.contains_key(&memory) {
             break;
         }
-        seen_states.insert(memory.clone());
+        seen_states.insert(memory.clone(), current_step);
         let max_index = find_index_of_max_value(memory.clone());
         let blocks = memory[max_index];
         memory[max_index] = 0;
@@ -20,10 +20,10 @@ pub fn realloc(memory: Vec<u32>) -> u32 {
         };
 
         memory = redistribute(memory, blocks, next_index);
-        steps += 1;
+        current_step += 1;
     }
 
-    steps
+    current_step - seen_states.get(&memory).unwrap()
 }
 
 fn redistribute(memory: Vec<u32>, blocks: u32, next_index: usize) -> Vec<u32> {
