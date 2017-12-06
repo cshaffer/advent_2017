@@ -3,6 +3,7 @@ mod io;
 mod inverse_captcha;
 mod jump;
 mod passphrase;
+mod realloc;
 mod spiral_memory;
 
 fn inverse_captcha_main() {
@@ -32,6 +33,12 @@ fn jump_main() {
     jump::jump(instructions);
 }
 
+fn realloc_main() {
+    let memory = io::read_int_array_from_file("input/6_puzzle.txt".to_string());
+    let steps = realloc::realloc(memory);
+    println!("Steps: {}", steps);
+}
+
 fn main() {
-    jump_main();
+    realloc_main();
 }
