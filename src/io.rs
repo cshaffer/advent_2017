@@ -36,6 +36,15 @@ pub fn read_int_lines_from_file(path: String) -> Vec<i32> {
     contents.lines().map(|line| i32::from_str_radix(line, 10).unwrap()).collect()
 }
 
+pub fn read_string_lines_from_file(path: String) -> Vec<String> {
+    let mut f = File::open(path).expect("file not found");
+
+    let mut contents = String::new();
+    f.read_to_string(&mut contents)
+        .expect("something went wrong reading the file");
+    contents.lines().map(|line| String::from(line)).collect()
+}
+
 pub fn read_int_array_from_file(path: String) -> Vec<u32> {
     let mut f = File::open(path).expect("file not found");
 

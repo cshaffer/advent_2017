@@ -3,6 +3,7 @@ mod io;
 mod inverse_captcha;
 mod jump;
 mod passphrase;
+mod tower;
 mod realloc;
 mod spiral_memory;
 
@@ -39,6 +40,12 @@ fn realloc_main() {
     println!("Steps: {}", steps);
 }
 
+fn tower_main() {
+    let input = io::read_string_lines_from_file("input/7_puzzle.txt".to_string());
+    let (tower, _) = tower::construct_tower(input);
+    println!("Root: {}", tower::find_root_of_tower(tower));
+}
+
 fn main() {
-    realloc_main();
+    tower_main();
 }
