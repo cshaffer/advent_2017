@@ -63,12 +63,7 @@ fn stream_main() {
 }
 
 fn knot_main() {
-    let mut lengths:Vec<u32> = "212,254,178,237,2,0,1,54,167,92,117,125,255,61,159,164".chars().map(|i| i as u32).collect();
-    lengths.push(17);
-    lengths.push(31);
-    lengths.push(73);
-    lengths.push(47);
-    lengths.push(23);
+    let lengths = "212,254,178,237,2,0,1,54,167,92,117,125,255,61,159,164".to_string();
     let hashed = knot::hash(lengths);
     println!("Hashed: {}", hashed);
 }

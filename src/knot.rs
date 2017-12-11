@@ -1,4 +1,11 @@
-pub fn hash(lengths: Vec<u32>) -> String {
+pub fn hash(lengths_string: String) -> String {
+    let mut lengths:Vec<u32> = lengths_string.chars().map(|i| i as u32).collect();
+    lengths.push(17);
+    lengths.push(31);
+    lengths.push(73);
+    lengths.push(47);
+    lengths.push(23);
+
     let mut list:Vec<u32> = (0..256).collect();
     let mut skip_size = 0;
     let mut current_position = 0;
