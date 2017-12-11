@@ -42,8 +42,9 @@ fn realloc_main() {
 
 fn tower_main() {
     let input = io::read_string_lines_from_file("input/7_puzzle.txt".to_string());
-    let (tower, _) = tower::construct_tower(input);
-    println!("Root: {}", tower::find_root_of_tower(tower));
+    let (parents, weights, children) = tower::construct_tower(input);
+    let root = tower::find_root_of_tower(parents);
+    tower::print_node_weights(children, weights, root);
 }
 
 fn main() {
