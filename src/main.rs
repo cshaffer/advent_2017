@@ -7,6 +7,7 @@ mod tower;
 mod realloc;
 mod spiral_memory;
 mod registers;
+mod stream;
 
 fn inverse_captcha_main() {
     let sum = inverse_captcha::inverse_captcha(io::read_one_line());
@@ -55,6 +56,11 @@ fn registers_main() {
     println!("Largest Value: {}", largest_value);
 }
 
+fn stream_main() {
+    let input = io::read_one_line();
+    println!("Score: {}", stream::calculate_score(input));
+}
+
 fn main() {
-    registers_main();
+    stream_main();
 }
