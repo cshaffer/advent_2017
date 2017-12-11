@@ -6,6 +6,7 @@ mod passphrase;
 mod tower;
 mod realloc;
 mod spiral_memory;
+mod registers;
 
 fn inverse_captcha_main() {
     let sum = inverse_captcha::inverse_captcha(io::read_one_line());
@@ -47,6 +48,13 @@ fn tower_main() {
     tower::print_node_weights(children, weights, root);
 }
 
+fn registers_main() {
+    let input = io::read_string_lines_from_file("input/8_puzzle.txt".to_string());
+    let registers = registers::run_instructions(input);
+    let largest_value = registers::find_largest_value(registers);
+    println!("Largest Value: {}", largest_value);
+}
+
 fn main() {
-    tower_main();
+    registers_main();
 }
