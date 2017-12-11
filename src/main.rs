@@ -8,6 +8,7 @@ mod realloc;
 mod spiral_memory;
 mod registers;
 mod stream;
+mod knot;
 
 fn inverse_captcha_main() {
     let sum = inverse_captcha::inverse_captcha(io::read_one_line());
@@ -61,6 +62,13 @@ fn stream_main() {
     println!("Garbage: {}", stream::count_garbage(input));
 }
 
+fn knot_main() {
+    let input = "212,254,178,237,2,0,1,54,167,92,117,125,255,61,159,164".to_string();
+    let lengths:Vec<u32> = input.split(",").map(|x| u32::from_str_radix(x, 10).unwrap()).collect();
+    let hashed = knot::hash(lengths);
+    println!("Product of first two: {}", hashed[0] * hashed[1]);
+}
+
 fn main() {
-    stream_main();
+    knot_main();
 }
