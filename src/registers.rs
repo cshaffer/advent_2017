@@ -27,6 +27,7 @@ fn parse_operator(operator: String) -> (fn(i32, i32) -> i32) {
 pub fn run_instructions(input: Vec<String>) -> HashMap<String, i32> {
     let instructions:Vec<Vec<String>> = input.iter().map(|s| s.split_whitespace().map(|x| String::from(x)).collect()).collect();
     let mut registers = HashMap::new();
+    let mut max_value = i32::min_value();
     for instruction in instructions {
         let register = instruction[0].clone();
         let value:i32 = if !registers.contains_key(&register) {
@@ -45,8 +46,13 @@ pub fn run_instructions(input: Vec<String>) -> HashMap<String, i32> {
             let operand = i32::from_str_radix(&instruction[2], 10).unwrap();
             let new_value = parse_operator(instruction[1].clone())(value, operand);
             registers.insert(register, new_value);
+            let current_max = find_largest_value(registers.clone());
+            if current_max > max_value {
+                max_value = current_max;
+            }
         }
     }
+    println!("Max Value: {}", max_value);
     registers
 }
 
