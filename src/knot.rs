@@ -1,13 +1,16 @@
-pub fn hash(lengths: Vec<u32>) -> Vec<u32> {
+pub fn hash(lengths: Vec<u32>) -> String {
     let mut list:Vec<u32> = (0..256).collect();
     let mut skip_size = 0;
     let mut current_position = 0;
-    for length in lengths {
-        list = reverse_sublist(list, current_position, length as usize);
-        current_position = (current_position + length as usize + skip_size) % list.len();
-        skip_size += 1;
+    for _ in 0..64 {
+        for length in lengths.clone() {
+            list = reverse_sublist(list, current_position, length as usize);
+            current_position = (current_position + length as usize + skip_size) % list.len();
+            skip_size += 1;
+        }
     }
-    list
+    let dense_hash:Vec<u32> = list.chunks(16).map(|chunk| chunk.iter().fold(0u32, |acc, x| acc ^ x)).collect();
+    dense_hash.iter().map(|x| format!("{:01$x}", x, 2)).collect::<Vec<String>>().join("")
 }
 
 fn reverse_sublist(list: Vec<u32>, index: usize, size: usize) -> Vec<u32> {
