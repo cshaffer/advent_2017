@@ -58,7 +58,7 @@ fn registers_main() {
 
 fn stream_main() {
     let input = io::read_one_line();
-    println!("Score: {}", stream::calculate_score(input));
+    println!("Garbage: {}", stream::count_garbage(input));
 }
 
 fn main() {
