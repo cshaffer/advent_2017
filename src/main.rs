@@ -34,7 +34,8 @@ fn passphrase_main() {
 
 fn jump_main() {
     let instructions = io::read_int_lines_from_file("input/5_puzzle.txt".to_string());
-    jump::jump(instructions);
+    let steps = jump::jump(instructions);
+    println!("Steps: {}", steps);
 }
 
 fn realloc_main() {
@@ -69,5 +70,5 @@ fn knot_main() {
 }
 
 fn main() {
-    knot_main();
+    jump_main();
 }
